@@ -1,15 +1,12 @@
 resource "digitalocean_project" "server" {
   count       = var.manage_project ? "1" : "0"
   name        = var.project_name
-  description = "A project to represent development resources."
-  purpose     = "Web Conference"
   environment = var.environment
 }
 
 data "digitalocean_project" "server" {
   name = var.project_name
 }
-
 
 data "digitalocean_ssh_keys" "all" {
 }

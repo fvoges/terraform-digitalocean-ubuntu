@@ -1,4 +1,4 @@
-module "do-ubuntu" {
+module "my_dns_secondary" {
   source = "../"
 
   project_name   = "DNS"
@@ -38,13 +38,13 @@ resource "digitalocean_firewall" "dns" {
 }
 
 output "fqdn" {
-  value = module.do-ubuntu.fqdn
+  value = module.my_dns_secondary.fqdn
 }
 
 output "ipv4" {
-  value = module.do-ubuntu.ipv4
+  value = module.my_dns_secondary.ipv4
 }
 
 output "ipv6" {
-  value = module.do-ubuntu.ipv6
+  value = module.my_dns_secondary.ipv6
 }
