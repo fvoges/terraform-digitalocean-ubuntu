@@ -51,6 +51,10 @@ variable "image" {
   type        = string
   description = "DigitalOcean Droplet image (do not change unless you know what you're doing)"
   default     = "ubuntu-20-04-x64"
+  validation {
+    condition     = can(regex("^ubuntu-", var.image))
+    error_message = "The image value must be a valid image name, starting with 'ubuntu-'."
+  }
 }
 
 variable "size" {
@@ -72,5 +76,35 @@ variable "puppet_server" {
 variable "tags" {
   type        = list(string)
   description = "List of existing DigitalOcean tags (he module will not create them)"
+  default     = []
+}
+
+variable "enable_ipv6" {
+  type        = bool
+  description = "Enable ipv6 for the droplet"
+  default     = true
+}
+
+variable "enable_backups" {
+  type        = bool
+  description = "Enable backups for the droplet"
+  default     = true
+}
+
+variable "enable_monitoring" {
+  type        = bool
+  description = "Enable monitoring for the droplet"
+  default     = true
+}
+
+variable "enable_private_networking" {
+  type        = bool
+  description = "Enable private networking for the droplet"
+  default     = false
+}
+
+variable "ssh_keys" {
+  type        = list(string)
+  description = "List of SSH keys allowed to login (if empty, it adds all your configured SSH keys)"
   default     = []
 }

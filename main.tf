@@ -25,15 +25,17 @@ locals {
 }
 
 resource "digitalocean_droplet" "server" {
-  image     = var.image
-  name      = "${var.hostname}.${var.domain}"
-  region    = var.region
-  size      = var.size
-  ipv6      = true
-  tags      = sort(distinct(concat(["all"], var.tags)))
-  ssh_keys  = data.digitalocean_ssh_keys.all.ssh_keys.*.fingerprint
-  user_data = templatefile("${path.module}/templates/userdata.tpl", local.userdata_vars)
-
+  image              = var.image
+  name               = "${var.hostname}.${var.domain}"
+  region             = var.region
+  size               = var.size
+  ipv6               = var.enable_ipv6
+  backups            = var.enable_backups
+  monitoring         = var.enable_monitoring
+  private_networking = var.enable_private_networking
+  tags               = sort(distinct(concat(["all"], var.tags)))
+  ssh_keys           = length(var.ssh_keys) == 0 ? data.digitalocean_ssh_keys.all.ssh_keys[*].fingerprint : var.ssh_keys
+  user_data          = templatefile("${path.module}/templates/userdata.tpl", local.userdata_vars)
 }
 
 resource "digitalocean_record" "server_ipv4" {
