@@ -1,7 +1,7 @@
 variable "manage_project" {
   type        = bool
   description = "Manage the DigitalOcean project"
-  default     = true
+  default     = false
 }
 variable "project_name" {
   type        = string
@@ -30,23 +30,6 @@ variable "region" {
   default     = "lon1"
 }
 
-variable "role" {
-  type        = string
-  description = "Puppet Role (pp_role trusted fact)"
-  default     = "server"
-}
-
-variable "application" {
-  type        = string
-  description = "Puppet Application (pp_application trusted fact)"
-}
-
-variable "environment" {
-  type        = string
-  description = "Puppet environment (pp_environment trusted fact)"
-  default     = "production"
-}
-
 variable "image" {
   type        = string
   description = "DigitalOcean Droplet image (do not change unless you know what you're doing)"
@@ -61,16 +44,6 @@ variable "size" {
   type        = string
   description = "DigitalOcean Droplet size"
   default     = "s-1vcpu-1gb"
-}
-
-variable "autosign_token" {
-  type        = string
-  description = "Puppet SSL cert autosign token"
-}
-
-variable "puppet_server" {
-  type        = string
-  description = "Puppet server FQDN"
 }
 
 variable "tags" {
@@ -97,14 +70,51 @@ variable "enable_monitoring" {
   default     = true
 }
 
-variable "enable_private_networking" {
+variable "vpc_id" {
   type        = bool
-  description = "Enable private networking for the droplet"
-  default     = false
+  description = "VPC ID to use for the droplet private network"
+  default     = null
 }
 
 variable "ssh_keys" {
   type        = list(string)
-  description = "List of SSH keys allowed to login (if empty, it adds all your configured SSH keys)"
+  description = "List of SSH keys allowed to login (**WARNING**: if empty, it will add all your configured SSH keys)"
   default     = []
 }
+
+variable "puppet_install_agent" {
+  type        = bool
+  description = "Install Puppet Agent (you need to set all the other Puppet related input variables if true)"
+  default     = false
+}
+
+variable "puppet_autosign_token" {
+  type        = string
+  description = "Puppet SSL cert autosign token"
+  default     = null
+}
+
+variable "puppet_server" {
+  type        = string
+  description = "Puppet server FQDN"
+  default     = null
+}
+
+variable "puppet_environment" {
+  type        = string
+  description = "Puppet environment (pp_environment trusted fact)"
+  default     = "production"
+}
+
+variable "puppet_application" {
+  type        = string
+  description = "Puppet Application (pp_application trusted fact)"
+  default     = null
+}
+
+variable "puppet_role" {
+  type        = string
+  description = "Puppet Role (pp_role trusted fact)"
+  default     = "server"
+}
+
