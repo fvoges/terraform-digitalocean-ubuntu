@@ -1,22 +1,22 @@
-module "my_dns_secondary" {
-  source = "../"
+# data "digitalocean_vpc" "example" {
+#   name = "default-${var.region}"
+# }
 
-  project_name   = "DNS"
+module "droplet" {
+  source = "../../"
+
+  project_name   = "example"
   manage_project = true
-  puppet_server  = "puppet.example.com"
-  hostname       = "ns2"
-  application    = "dns"
-  role           = "secondary"
+  hostname       = "dns3"
   domain         = "example.com"
-  autosign_token = "hunter2"
-  tags           = [ "dns" ]
+  tags           = ["dns"]
   image          = "ubuntu-18-04-x64"
 }
 
 resource "digitalocean_firewall" "dns" {
   name = "dns-secondary"
 
-  tags = [ "dns"]
+  tags = ["dns"]
 
   inbound_rule {
     protocol         = "udp"
@@ -38,13 +38,13 @@ resource "digitalocean_firewall" "dns" {
 }
 
 output "fqdn" {
-  value = module.my_dns_secondary.fqdn
+  value = module.droplet.fqdn
 }
 
 output "ipv4" {
-  value = module.my_dns_secondary.ipv4
+  value = module.droplet.ipv4
 }
 
 output "ipv6" {
-  value = module.my_dns_secondary.ipv6
+  value = module.droplet.ipv6
 }
