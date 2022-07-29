@@ -71,7 +71,7 @@ variable "enable_monitoring" {
 }
 
 variable "vpc_id" {
-  type        = bool
+  type        = string
   description = "VPC ID to use for the droplet private network"
   default     = null
 }
