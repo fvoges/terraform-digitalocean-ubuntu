@@ -33,7 +33,7 @@ variable "region" {
 variable "image" {
   type        = string
   description = "DigitalOcean Droplet image (do not change unless you know what you're doing)"
-  default     = "ubuntu-20-04-x64"
+  default     = "ubuntu-24-04-x64"
   validation {
     condition     = can(regex("^ubuntu-", var.image))
     error_message = "The image value must be a valid image name, starting with 'ubuntu-'."

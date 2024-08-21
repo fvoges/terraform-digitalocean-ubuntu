@@ -10,7 +10,7 @@ module "droplet" {
   hostname       = "dns3"
   domain         = "example.com"
   tags           = ["dns"]
-  image          = "ubuntu-18-04-x64"
+  image          = "ubuntu-24-04-x64"
 }
 
 resource "digitalocean_firewall" "dns" {

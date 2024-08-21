@@ -6,7 +6,7 @@ module "droplet" {
   hostname              = "dns4"
   domain                = "example.com"
   tags                  = ["dns"]
-  image                 = "ubuntu-18-04-x64"
+  image                 = "ubuntu-24-04-x64"
   puppet_install_agent  = true
   puppet_server         = "puppet.example.com"
   puppet_application    = "dns"
