@@ -118,3 +118,27 @@ variable "puppet_role" {
   default     = "server"
 }
 
+variable "tailscale_install_client" {
+  type        = bool
+  description = "Install Tailscale VPN Client (you need to set at least the tailscale_auth_key input variable if true)"
+  default     = false
+}
+
+variable "tailscale_auth_key" {
+  type        = string
+  description = "Tailscale VPN authentication key used to register the node"
+  default     = null
+}
+
+variable "tailscale_ssh" {
+  type        = bool
+  description = "Enable Tailscale VPN SSH"
+  default     = false
+}
+
+variable "tailscale_exit_node" {
+  type        = bool
+  description = "Publish this Tailscale node as an exit node"
+  default     = false
+}
+

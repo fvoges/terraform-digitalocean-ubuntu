@@ -16,15 +16,19 @@ data "digitalocean_ssh_keys" "all" {
 
 locals {
   userdata_vars = {
-    hostname       = var.hostname
-    fqdn           = "${var.hostname}.${var.domain}"
-    datacenter     = var.region
-    application    = var.puppet_application
-    role           = var.puppet_role
-    environment    = var.puppet_environment
-    puppet_server  = var.puppet_server
-    autosign_token = var.puppet_autosign_token
-    install_puppet = var.puppet_install_agent
+    hostname            = var.hostname
+    fqdn                = "${var.hostname}.${var.domain}"
+    datacenter          = var.region
+    application         = var.puppet_application
+    role                = var.puppet_role
+    environment         = var.puppet_environment
+    puppet_server       = var.puppet_server
+    autosign_token      = var.puppet_autosign_token
+    install_puppet      = var.puppet_install_agent
+    install_tailscale   = var.tailscale_install_client
+    tailscale_auth_key  = var.tailscale_auth_key
+    tailscale_ssh       = var.tailscale_ssh
+    tailscale_exit_node = var.tailscale_exit_node
   }
 }
 

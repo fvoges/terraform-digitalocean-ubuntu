@@ -50,7 +50,7 @@ This is done by Puppet using the trusted facts to assign a Puppet role class to 
 
 | Name | Version |
 |------|---------|
-| <a name="provider_digitalocean"></a> [digitalocean](#provider\_digitalocean) | 2.6.0 |
+| <a name="provider_digitalocean"></a> [digitalocean](#provider\_digitalocean) | 2.40.0 |
 
 ## Modules
 
@@ -78,7 +78,7 @@ No modules.
 | <a name="input_enable_ipv6"></a> [enable\_ipv6](#input\_enable\_ipv6) | Enable ipv6 for the droplet | `bool` | `true` | no |
 | <a name="input_enable_monitoring"></a> [enable\_monitoring](#input\_enable\_monitoring) | Enable monitoring for the droplet | `bool` | `true` | no |
 | <a name="input_hostname"></a> [hostname](#input\_hostname) | Server short hostname (without domain name) | `string` | n/a | yes |
-| <a name="input_image"></a> [image](#input\_image) | DigitalOcean Droplet image (do not change unless you know what you're doing) | `string` | `"ubuntu-20-04-x64"` | no |
+| <a name="input_image"></a> [image](#input\_image) | DigitalOcean Droplet image (do not change unless you know what you're doing) | `string` | `"ubuntu-24-04-x64"` | no |
 | <a name="input_manage_project"></a> [manage\_project](#input\_manage\_project) | Manage the DigitalOcean project | `bool` | `false` | no |
 | <a name="input_project_name"></a> [project\_name](#input\_project\_name) | DigitalOcean project name | `string` | `"Default"` | no |
 | <a name="input_puppet_application"></a> [puppet\_application](#input\_puppet\_application) | Puppet Application (pp\_application trusted fact) | `string` | `null` | no |
@@ -91,7 +91,11 @@ No modules.
 | <a name="input_size"></a> [size](#input\_size) | DigitalOcean Droplet size | `string` | `"s-1vcpu-1gb"` | no |
 | <a name="input_ssh_keys"></a> [ssh\_keys](#input\_ssh\_keys) | List of SSH keys allowed to login (**WARNING**: if empty, it will add all your configured SSH keys) | `list(string)` | `[]` | no |
 | <a name="input_tags"></a> [tags](#input\_tags) | List of existing DigitalOcean tags (he module will not create them) | `list(string)` | `[]` | no |
-| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | VPC ID to use for the droplet private network | `bool` | `null` | no |
+| <a name="input_tailscale_auth_key"></a> [tailscale\_auth\_key](#input\_tailscale\_auth\_key) | Tailscale VPN authentication key used to register the node | `string` | `null` | no |
+| <a name="input_tailscale_exit_node"></a> [tailscale\_exit\_node](#input\_tailscale\_exit\_node) | Publish this Tailscale node as an exit node | `bool` | `false` | no |
+| <a name="input_tailscale_install_client"></a> [tailscale\_install\_client](#input\_tailscale\_install\_client) | Install Tailscale VPN Client (you need to set at least the tailscale\_auth\_key input variable if true) | `bool` | `false` | no |
+| <a name="input_tailscale_ssh"></a> [tailscale\_ssh](#input\_tailscale\_ssh) | Enable Tailscale VPN SSH | `bool` | `false` | no |
+| <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | VPC ID to use for the droplet private network | `string` | `null` | no |
 
 ## Outputs
 
